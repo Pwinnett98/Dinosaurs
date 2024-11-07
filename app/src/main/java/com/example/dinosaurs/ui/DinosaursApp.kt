@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.example.dinosaurs.ui.theme
+package com.example.dinosaurs.ui
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -16,7 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
-import com.example.dinosaurs.DinoViewModel
+import androidx.lifecycle.ViewModel
 import com.example.dinosaurs.R
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -32,12 +32,16 @@ fun DinosaursApp() {
                 .fillMaxSize()
                 .padding(it)
         ) {
-            val dinoViewModel: DinoViewModel = DinoViewModel()
+            val dinoViewModel: DinoViewModel = ViewModel()
             HomeScreen(
-                dinoUiState = dinoViewModel.dinoUiState)
+                dinoUiState = dinoViewModel.dinoUiState,
+                retryAction = dinoViewModel::getDinoPhotos
+            )
         }
     }
 }
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DinoTopAppBar(scrollBehavior: TopAppBarScrollBehavior, modifier: Modifier = Modifier) {
     CenterAlignedTopAppBar(
