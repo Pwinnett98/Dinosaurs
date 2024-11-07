@@ -16,7 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.dinosaurs.R
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -32,7 +32,7 @@ fun DinosaursApp() {
                 .fillMaxSize()
                 .padding(it)
         ) {
-            val dinoViewModel: DinoViewModel = ViewModel()
+            val dinoViewModel: DinoViewModel = viewModel()
             HomeScreen(
                 dinoUiState = dinoViewModel.dinoUiState,
                 retryAction = dinoViewModel::getDinoPhotos
